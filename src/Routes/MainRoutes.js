@@ -3,7 +3,6 @@ import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
 import AddProduct from "../pages/Dashbaord/AddProduct";
 import AllSellers from "../pages/Dashbaord/AllSellers";
-import LeftSideNav from "../pages/Dashbaord/LeftSideNav";
 import MyOrders from "../pages/Dashbaord/MyOrders";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login";
