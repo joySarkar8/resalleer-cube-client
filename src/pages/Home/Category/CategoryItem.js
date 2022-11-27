@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const CategoryItem = ({category}) => {
-    const {brandName, img} = category;
+const CategoryItem = ({category, handleData}) => {
+    const {brandName, img, _id} = category;
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure><img src={img} alt="" /></figure>
@@ -16,7 +17,7 @@ const CategoryItem = ({category}) => {
                     <div className="badge badge-outline">Products</div>
                 </div>
             </div>
-            <button className="btn btn-primary">View Products</button>
+            <Link to={`/products/${_id}`}><button className="btn btn-primary">View Products</button></Link>
         </div>
     );
 };

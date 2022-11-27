@@ -11,6 +11,10 @@ const CategoryItems = () => {
             .then(data => setCategoriesData(data.data))
     }, []);
 
+    const handleData = (data) => {
+        console.log(data);
+    }
+
     return (
         <div className='container m-auto'>
             <h1 className='text-6xl text-center mb-8'>Categories</h1>
@@ -19,6 +23,7 @@ const CategoryItems = () => {
                     categoriesData.length ? categoriesData?.map(category => <CategoryItem
                         key={category._id}
                         category={category}
+                        handleData={handleData}
                     ></CategoryItem>)
                         :
                         <div className=''>

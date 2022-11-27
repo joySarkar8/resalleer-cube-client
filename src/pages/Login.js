@@ -16,11 +16,15 @@ const Login = () => {
     const googleProvider = new GoogleAuthProvider();
 
     const handleGoogleSignIn = () => {
+        const selection = 'buyer';
         setLoader(true);
         googleProviderLogin(googleProvider)
             .then(result => {
                 const user = result.user;
-                user && navigate(from, { replace: true })
+                const name = user.displayName;
+                const email = user.email;
+                user && navigate(from, { replace: true });
+                setUserToDb(name, email, selection);
                 toast.success('Google Login Successfull!')
                 // console.log(user);
             })
@@ -29,7 +33,7 @@ const Login = () => {
                 setLoader(false);
             })
 
-    }
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -50,8 +54,29 @@ const Login = () => {
                 toast.error(e.message);
                 setLoader(false);
             })
-    }
-    
+    };
+
+    const setUserToDb = (name, email, selection) => {
+
+        const user = {
+            name,
+            email,
+            role: selection,
+        };
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log('save user', data);
+            })
+    };
+
 
     return (
         <div className="hero bg-base-200">

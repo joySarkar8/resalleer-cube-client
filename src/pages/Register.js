@@ -13,10 +13,14 @@ const Register = () => {
     const googleProvider = new GoogleAuthProvider();
 
     const handleGoogleSignIn = () => {
+        const selection = 'buyer';
         setLoader(true);
         googleProviderLogin(googleProvider)
-            .then(() => {
-                navigate('/')
+            .then((result) => {
+                const name = result.user.displayName;
+                const email = result.user.email;
+                navigate('/');
+                setUserToDb(name, email, selection);
                 toast.success('Google Login Successfull!')
             })
             .catch(e => {
@@ -41,7 +45,7 @@ const Register = () => {
         createUser(email, password)
             .then(() => {
                 form.reset();
-                handleUpdateProfile(name);
+                handleUpdateProfile(name, email, selection);
                 navigate('/')
                 toast.success('Create Account Successfull!')
             })
@@ -49,14 +53,39 @@ const Register = () => {
                 toast.error(e.message);
                 setLoader(false);
             })
-    }
+    };
 
-    const handleUpdateProfile = (name, photoURL) => {
-        const profile = { displayName: name, photoURL: photoURL }
+    const handleUpdateProfile = (name, email, selection) => {
+        const profile = { displayName: name }
         updateUserProfile(profile)
-            .then(() => { })
+            .then(() => {
+                setUserToDb(name, email, selection)
+            })
             .catch(e => toast.error(e.message))
-    }
+    };
+
+    const setUserToDb = (name, email, selection) => {
+
+        const user = {
+            name,
+            email,
+            role: selection,
+        };
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log('save user', data);
+
+            })
+    };
+    
     return (
         <div className="hero bg-base-200">
             <div className="card flex-shrink-0 shadow-2xl bg-base-100 w-[500px]">
@@ -80,8 +109,8 @@ const Register = () => {
                         <input name='password' type="password" placeholder="password" className="input input-bordered" />
                     </div>
                     <select name='selection' className="select select-bordered w-full max-w-xs">
-                        <option defaultValue>For Byer Account</option>
-                        <option>For Seller Account</option>
+                        <option value='buyer' defaultValue>For Buyer Account</option>
+                        <option value='seller'>For Seller Account</option>
                     </select>
                     <div className="form-control mt-2">
                         <button className="btn btn-primary">{loader ? <div className=''>
@@ -100,3 +129,4 @@ const Register = () => {
 };
 
 export default Register;
+
