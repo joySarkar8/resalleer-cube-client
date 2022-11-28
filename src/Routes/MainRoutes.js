@@ -4,6 +4,7 @@ import Main from "../layout/Main";
 import AddProduct from "../pages/Dashbaord/AddProduct";
 import AllSellers from "../pages/Dashbaord/AllSellers";
 import MyOrders from "../pages/Dashbaord/MyOrders";
+import MyProducts from "../pages/Dashbaord/MyProducts";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login";
 import Products from "../pages/Products/Products";
@@ -53,14 +54,14 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/my-products',
-                        element: <AddProduct></AddProduct>,
+                        element: <PrivateRoute><MyProducts></MyProducts></PrivateRoute>
                     },
                 ]
             },
             {
-                path: 'products/:id',
+                path: 'products/:categoryName',
                 element: <Products></Products>,
-                loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`),
+                loader: ({params}) => fetch(`http://localhost:5000/products/${params.categoryName}`),
             }
         ]
     }

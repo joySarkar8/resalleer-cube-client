@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import PrivateRoute from '../../Routes/PrivateRoute';
 import Modal from './Modal';
 import ProductCard from './ProductCard';
 
@@ -17,9 +18,9 @@ const Products = () => {
                     setProductInformation={setProductInformation}
                 ></ProductCard>)
             }
-            <Modal
+            <PrivateRoute><Modal
                 productInformation={productInformation}
-            ></Modal>
+            ></Modal></PrivateRoute>
         </div>
     );
 };

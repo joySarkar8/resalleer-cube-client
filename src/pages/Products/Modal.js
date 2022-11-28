@@ -6,7 +6,7 @@ const Modal = ({productInformation}) => {
     const { user } = useContext(AuthContext);
     const {email, displayName} = user;
     const {model, resalePrice, meeting_location, phone, img, sellerName} = productInformation;
-    
+    console.log(email);
     const handleBooked = () => {
         const booked = {
             model,
