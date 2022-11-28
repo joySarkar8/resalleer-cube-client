@@ -1,10 +1,42 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Modal = ({productInformation}) => {
     const { user } = useContext(AuthContext);
-    const {model, resalePrice, meeting_location, phone} = productInformation;
-    console.log(productInformation);
+    const {email, displayName} = user;
+    const {model, resalePrice, meeting_location, phone, img, sellerName} = productInformation;
+    
+    const handleBooked = () => {
+        const booked = {
+            model,
+            resalePrice,
+            email, 
+            displayName,
+            img,
+            meeting_location,
+            sellerName,
+            phone
+        };
+
+        fetch('http://localhost:5000/booked', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booked)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                toast.success('Booking Confirmed')
+                
+            }
+            else{
+                toast.error(data.message)
+            }
+        })
+    }
     return (
         <div>
             <input type="checkbox" id="booking" className="modal-toggle" />
@@ -17,7 +49,7 @@ const Modal = ({productInformation}) => {
                     <h2 className="text-xl">Price: {resalePrice}/-</h2>
                     <h2 className="text-xl">Meeting Location: {meeting_location}</h2>
                     <h2 className="text-xl mb-4">Phone: {phone}</h2>
-                    <button className='btn btn-primary w-full'>Submit</button>
+                    <button onClick={handleBooked} className='btn btn-primary w-full'>Submit</button>
                 </div>
             </div>
         </div>
