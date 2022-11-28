@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ProductCard = ({product}) => {
-    const {img, model, resalePrice, originalPrice, yearsOfUse, cardPostTime, isVerified, sellerName, brandName, location, description} = product;
+const ProductCard = ({ product, setProductInformation }) => {
+    const { img, model, resalePrice, originalPrice, yearsOfUse, cardPostTime, isVerified, sellerName, brandName, location, description } = product;
     return (
         <div className="grid grid-cols-4 mb-5">
             <div><img className='w-full h-56' src={img} alt="" /></div>
@@ -15,7 +15,11 @@ const ProductCard = ({product}) => {
                 <p>{description}</p>
                 <p>Post Time: {cardPostTime}</p>
             </div>
-            <label htmlFor="booking" className="btn btn-primary">Book Now</label>
+            <label
+                htmlFor="booking"
+                className="btn btn-primary"
+                onClick={() => setProductInformation(product)}
+                >Book Now</label>
         </div>
     );
 };

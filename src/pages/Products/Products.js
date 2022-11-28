@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Modal from './Modal';
 import ProductCard from './ProductCard';
 
 const Products = () => {
+    const [productInformation, setProductInformation] = useState({});
     const products = useLoaderData();
 
     return (
@@ -13,9 +14,12 @@ const Products = () => {
                 products.data.map(product => <ProductCard
                     key={product._id}
                     product={product}
+                    setProductInformation={setProductInformation}
                 ></ProductCard>)
             }
-            <Modal></Modal>
+            <Modal
+                productInformation={productInformation}
+            ></Modal>
         </div>
     );
 };
