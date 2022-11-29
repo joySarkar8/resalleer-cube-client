@@ -11,6 +11,7 @@ import Products from "../pages/Products/Products";
 import Register from "../pages/Register";
 import ErrorPage from "../pages/shared/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
+import SellerRoute from "./SellerRoute";
 
 
 
@@ -34,15 +35,15 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard',
-                element: <DashboardLayout></DashboardLayout>,
+                element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
                 children: [
                     {
                         path: '/dashboard',
-                        element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>,
+                        element: <MyOrders></MyOrders>,
                     },
                     {
                         path: '/dashboard/my-orders',
-                        element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>,
+                        element: <MyOrders></MyOrders>,
                     },
                     {
                         path: '/dashboard/all-sellers',
@@ -54,14 +55,14 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/my-products',
-                        element: <PrivateRoute><MyProducts></MyProducts></PrivateRoute>
+                        element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
                     },
                 ]
             },
             {
                 path: 'products/:categoryName',
                 element: <Products></Products>,
-                loader: ({params}) => fetch(`http://localhost:5000/products/${params.categoryName}`),
+                // loader: ({params}) => fetch(`http://localhost:5000/products/${params.categoryName}`),
             }
         ]
     }

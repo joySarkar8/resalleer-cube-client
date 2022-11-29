@@ -1,17 +1,30 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider';
+import Loading from '../shared/Loading';
 
 const MyProducts = () => {
-    const [products, setProducts] = useState([]);
+    // const [products, setProducts] = useState([]);
     const { user } = useContext(AuthContext);
     const { email } = user;
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/myproduct?email=${email}`)
+    // useEffect(() => {
+    //     fetch(`http://localhost:5000/myproduct?email=${email}`)
+    //         .then(res => res.json())
+    //         .then(data => setProducts(data.data))
+    // }, [email])
+
+
+    const { data: products = [], isLoading, refetch } = useQuery({
+        queryKey: ['products'],
+        queryFn: () => fetch(`http://localhost:5000/myproduct?email=${email}`)
             .then(res => res.json())
-            .then(data => setProducts(data.data))
-    }, [email])
+    });
+
+    if (isLoading) {
+        return <Loading></Loading>
+    };
 
     const handleAdvertise = (id) => {
 
@@ -31,6 +44,7 @@ const MyProducts = () => {
             .then(data => {
                 if (data.success) {
                     toast.success('Product Added');
+                    refetch();
                 }
                 else {
                     toast.error(data.message)
@@ -62,7 +76,7 @@ const MyProducts = () => {
 
                     <tbody>
                         {
-                            products.map((product, i) =>
+                            products?.data.map((product, i) =>
                                 <tr
                                     key={i}
 
@@ -91,7 +105,7 @@ const MyProducts = () => {
                                         <button onClick={() => handleAdvertise(product._id)} className="btn btn-primary btn-xs">Addvertise</button>
                                         }
                                     </td>
-                                    <td>{product?.status ? 'Sold' : 'Live'}</td>
+                                    <td>{product?.status ? 'sold' : <span className='badge badge-primary'>Live</span>}</td>
                                     <td><button onClick={() => handleDelete(product._id)} className="btn btn-primary btn-xs">Delete</button></td>
                                 </tr>
                             )
