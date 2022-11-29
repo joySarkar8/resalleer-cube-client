@@ -12,7 +12,7 @@ const CategoryItems = () => {
     }, []);
 
     const handleData = (data) => {
-        console.log(data);
+        // console.log(data);
     }
 
     return (

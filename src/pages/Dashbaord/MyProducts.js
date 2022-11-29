@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const MyProducts = () => {
-
     const [products, setProducts] = useState([]);
     const { user } = useContext(AuthContext);
     const { email } = user;
@@ -13,6 +13,34 @@ const MyProducts = () => {
             .then(data => setProducts(data.data))
     }, [email])
 
+    const handleAdvertise = (id) => {
+
+        const add = {
+            advertise: 'advertise'
+        }
+
+
+        fetch(`http://localhost:5000/advertise/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(add)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    toast.success('Product Added');
+                }
+                else {
+                    toast.error(data.message)
+                }
+            })
+    };
+
+    const handleDelete = (id) => {
+        // console.log(id);
+    }
 
     return (
         <div>
@@ -23,9 +51,12 @@ const MyProducts = () => {
                         <tr>
                             <th>No.</th>
                             <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Meeting Location</th>
+                            <th>Resale Price</th>
+                            <th>Addvertise</th>
+                            <th>Status</th>
                             <th></th>
+                            
                         </tr>
                     </thead>
 
@@ -33,7 +64,7 @@ const MyProducts = () => {
                         {
                             products.map((product, i) =>
                                 <tr
-                                key={i}
+                                    key={i}
 
                                 >
                                     <td>{i + 1}</td>
@@ -51,14 +82,17 @@ const MyProducts = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        Zemlak, Daniel and Leannon
+                                        {product.meeting_location}
                                         <br />
-                                        <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                                        <span className="badge badge-ghost badge-sm">Mob: {product.phone}</span>
                                     </td>
-                                    <td>Purple</td>
-                                    <th>
-                                        <button className="btn btn-ghost btn-xs">details</button>
-                                    </th>
+                                    <td>{product.resalePrice} /-</td>
+                                    <td>{product?.advertise ? <button disabled className="btn btn-primary btn-xs">Addvertise</button> :
+                                        <button onClick={() => handleAdvertise(product._id)} className="btn btn-primary btn-xs">Addvertise</button>
+                                        }
+                                    </td>
+                                    <td>{product?.status ? 'Sold' : 'Live'}</td>
+                                    <td><button onClick={() => handleDelete(product._id)} className="btn btn-primary btn-xs">Delete</button></td>
                                 </tr>
                             )
                         }
