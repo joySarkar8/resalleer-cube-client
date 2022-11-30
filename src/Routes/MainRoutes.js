@@ -10,6 +10,7 @@ import Login from "../pages/Login";
 import Products from "../pages/Products/Products";
 import Register from "../pages/Register";
 import ErrorPage from "../pages/shared/ErrorPage";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
 
@@ -47,11 +48,11 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/all-sellers',
-                        element: <AllSellers></AllSellers>
+                        element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
                     },
                     {
                         path: '/dashboard/add-product',
-                        element: <AddProduct></AddProduct>,
+                        element: <SellerRoute><AddProduct></AddProduct></SellerRoute>,
                     },
                     {
                         path: '/dashboard/my-products',
