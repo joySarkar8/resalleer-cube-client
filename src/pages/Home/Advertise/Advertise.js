@@ -15,10 +15,10 @@ const Advertise = () => {
     };
 
     return (
-        <div>
+        <div className=''>
             {advertiseData?.data?.length ?
-                <div className='container m-auto'>
-                    <h1 className='text-6xl text-center mb-8'>Advertise</h1>
+                <div className='container m-auto mt-12 bg-gray-200 p-5 mb-6'>
+                    <h1 className='text-3xl md:text-5xl mt-6 text-center underline mb-8'>Advertise</h1>
                     <div className='flex justify-center flex-wrap mb-5' style={{ gap: '40px' }}>
                         {
                             advertiseData?.data?.map(advertiseItem => <AdvertiseCard

@@ -1,10 +1,10 @@
 import React from 'react';
 
 const AdvertiseCard = ({ advertiseItem }) => {
-    const { model, img, condition, resalePrice, _id, meeting_location, sellerName, phone } = advertiseItem;
+    const { model, img, condition, resalePrice, verify, _id, meeting_location, sellerName, phone } = advertiseItem;
 
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card w-96 bg-base-100 shadow-xl p-4">
             <figure><img className='w-full h-56' src={img} alt="" /></figure>
             <div className="card-body">
                 <h2 className="card-title">
@@ -12,10 +12,10 @@ const AdvertiseCard = ({ advertiseItem }) => {
                     <div className="badge badge-secondary">NEW</div>
                 </h2>
                 <h2>Price: {resalePrice} /-</h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
+                <p>Mob: {phone}</p>
                 <div className="card-actions justify-end">
                     <div className="badge badge-outline">{condition}</div>
-                    <div className="badge badge-outline">Products</div>
+                    <div>{verify && <span className='badge badge-primary'>Verified</span>}</div>
                 </div>
             </div>
             

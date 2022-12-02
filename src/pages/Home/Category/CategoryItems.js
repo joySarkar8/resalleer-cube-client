@@ -16,8 +16,8 @@ const CategoryItems = () => {
     }
 
     return (
-        <div className='container m-auto'>
-            <h1 className='text-6xl text-center mb-8'>Categories</h1>
+        <div className='container m-auto bg-gray-200 p-5 mb-10'>
+            <h1 className='text-3xl md:text-5xl text-center mt-7 mb-8 underline'>Categories</h1>
             <div className='flex justify-center flex-wrap mb-5' style={{ gap: '40px' }}>
                 {
                     categoriesData.length ? categoriesData?.map(category => <CategoryItem

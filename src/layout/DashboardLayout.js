@@ -4,9 +4,11 @@ import LeftSideNav from '../pages/Dashbaord/LeftSideNav';
 
 const DashboardLayout = () => {
     return (
-        <div className='grid gap-4 grid-cols-4'>
-            <LeftSideNav></LeftSideNav>
-            <div className='col-span-3'>
+        <div className='flex md:flex-row flex-col container m-auto gap-4'>
+            <div className='md:basis-1/4'>
+                <LeftSideNav></LeftSideNav>
+            </div>
+            <div className='md:basis-3/4'>
                 <Outlet></Outlet>
             </div>
         </div>

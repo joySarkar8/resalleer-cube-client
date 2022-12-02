@@ -26,8 +26,8 @@ const Products = () => {
 
 
     return (
-        <div className=' container m-auto'>
-            <h2 className='text-4xl text-center'>Products</h2>
+        <div className='mt-6 container m-auto bg-gray-200 p-5 mb-10'>
+            <h2 className='text-4xl text-center mb-6 underline'>Products</h2>
             {
                 products?.data.map(product => <ProductCard
                     key={product._id}

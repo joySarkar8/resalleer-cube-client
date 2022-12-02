@@ -53,6 +53,7 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 form.reset();
+                navigate('/');
                 toast.success('Login Successfull!')
             })
             .catch(e => {

@@ -19,7 +19,7 @@ const Header = () => {
 
     const menuItems = <>
         <li className='text-success'><Link to='/'>Home</Link></li>
-        <li className='text-success'><Link to='/about'>Blog</Link></li>
+        <li className='text-success'><Link to='/blog'>Blog</Link></li>
         {user?.uid ?
             <>
                 <li className='text-success'><Link to='/dashboard'>Dashboard</Link></li>
