@@ -18,7 +18,7 @@ const Modal = ({productInformation, refetch}) => {
             advertise: 'advertise'
         };
 
-        fetch(`http://localhost:5000/update-product/${id}`, {
+        fetch(`https://reseller-cube-server.vercel.app/update-product/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -39,7 +39,7 @@ const Modal = ({productInformation, refetch}) => {
                         phone
                     };
 
-                    fetch('http://localhost:5000/booked', {
+                    fetch('https://reseller-cube-server.vercel.app/booked', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

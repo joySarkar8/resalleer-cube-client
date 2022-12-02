@@ -6,7 +6,7 @@ import AdvertiseCard from './AdvertiseCard';
 const Advertise = () => {
     const { data: advertiseData = [], isLoading } = useQuery({
         queryKey: ['advertise'],
-        queryFn: () => fetch('http://localhost:5000/advertise?advertise=advertise')
+        queryFn: () => fetch('https://reseller-cube-server.vercel.app/advertise?advertise=advertise')
             .then(res => res.json())
     });
 

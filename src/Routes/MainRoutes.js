@@ -69,12 +69,12 @@ const router = createBrowserRouter([
             {
                 path: 'products/:categoryName',
                 element: <PrivateRoute><Products></Products></PrivateRoute>,
-                // loader: ({params}) => fetch(`http://localhost:5000/products/${params.categoryName}`),
+                // loader: ({params}) => fetch(`https://reseller-cube-server.vercel.app/products/${params.categoryName}`),
             },
             {
                 path: '/blog',
                 element: <Blog></Blog>,
-                loader: ({params}) => fetch(`http://localhost:5000/blog`)
+                loader: ({params}) => fetch(`https://reseller-cube-server.vercel.app/blog`)
             }
         ]
     }

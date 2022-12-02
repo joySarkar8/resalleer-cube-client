@@ -7,7 +7,7 @@ const MyOrders = () => {
     const { email } = user;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myorders?email=${email}`)
+        fetch(`https://reseller-cube-server.vercel.app/myorders?email=${email}`)
             .then(res => res.json())
             .then(data => setOrders(data.data))
     }, [email])

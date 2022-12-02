@@ -6,7 +6,7 @@ const CategoryItems = () => {
     const [categoriesData, setCategoriesData] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/categoires')
+        fetch('https://reseller-cube-server.vercel.app/categoires')
             .then(res => res.json())
             .then(data => setCategoriesData(data.data))
     }, []);

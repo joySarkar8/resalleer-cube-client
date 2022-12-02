@@ -15,7 +15,7 @@ const Products = () => {
 
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products'],
-        queryFn: () => fetch(`http://localhost:5000/products?category=${name}`)
+        queryFn: () => fetch(`https://reseller-cube-server.vercel.app/products?category=${name}`)
             .then(res => res.json())
     });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AdvertiseCard = ({ advertiseItem }) => {
-    const { model, img, condition, resalePrice, verify, _id, meeting_location, sellerName, phone } = advertiseItem;
+    const { model, img, condition, resalePrice, verify, meeting_location, sellerName, phone } = advertiseItem;
 
     return (
         <div className="card w-96 bg-base-100 shadow-xl p-4">
@@ -13,6 +13,8 @@ const AdvertiseCard = ({ advertiseItem }) => {
                 </h2>
                 <h2>Price: {resalePrice} /-</h2>
                 <p>Mob: {phone}</p>
+                <p>Seller Name: {sellerName}</p>
+                <p>Meeting Location: {meeting_location}</p>
                 <div className="card-actions justify-end">
                     <div className="badge badge-outline">{condition}</div>
                     <div>{verify && <span className='badge badge-primary'>Verified</span>}</div>

@@ -42,7 +42,7 @@ const AddProduct = () => {
         console.log(product);
 
        
-       fetch('http://localhost:5000/add-product', {
+       fetch('https://reseller-cube-server.vercel.app/add-product', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

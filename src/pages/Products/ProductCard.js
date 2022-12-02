@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProductCard = ({ product, setProductInformation }) => {
-    const { img, model, resalePrice, originalPrice, yearsOfUse, cardPostTime, verify, sellerName, brandName, location, description } = product;
+    const { img, model, resalePrice, originalPrice, yearsOfUse, cardPostingTime, verify, sellerName, location, description } = product;
     return (
         <div className="flex md:flex-row flex-col container m-auto gap-4 border mb-5 p-4 border-slate-800">
             <div className='md:basis-1/4'>
@@ -21,7 +21,7 @@ const ProductCard = ({ product, setProductInformation }) => {
                 <p>Years of Use: {yearsOfUse}years</p>
                 <p>Seller Name: {sellerName} {verify && <span className='badge badge-primary'>Verified</span>}</p>
                 <p>{description}</p>
-                <p>Post Time: {cardPostTime}</p>
+                <p>Post Time: {cardPostingTime}</p>
             </div>
 
         </div>

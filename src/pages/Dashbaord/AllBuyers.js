@@ -6,7 +6,7 @@ import Loading from '../shared/Loading';
 const AllBuyers = () => {
     const { data: buyers = [], isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
-        queryFn: () => fetch(`http://localhost:5000/allbuyer`)
+        queryFn: () => fetch(`https://reseller-cube-server.vercel.app/allbuyer`)
             .then(res => res.json())
     });
 
@@ -21,7 +21,7 @@ const AllBuyers = () => {
             role: 'seller'
         };
 
-        fetch(`http://localhost:5000/make-seller/${id}`, {
+        fetch(`https://reseller-cube-server.vercel.app/make-seller/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
@@ -44,7 +44,7 @@ const AllBuyers = () => {
         // console.log(id);
         const proceed = window.confirm('Continue to DELETE this user pls click ok')
         if (proceed) {
-            fetch(`http://localhost:5000/buyer/${id}`, {
+            fetch(`https://reseller-cube-server.vercel.app/buyer/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())

@@ -5,7 +5,7 @@ import Header from '../pages/shared/Header';
 
 const Main = () => {
     return (
-        <div>
+        <div className=''>
             <Header></Header>
             <Outlet></Outlet>
             <Footer></Footer>

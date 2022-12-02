@@ -18,19 +18,19 @@ const Header = () => {
     };
 
     const menuItems = <>
-        <li className='text-success'><Link to='/'>Home</Link></li>
-        <li className='text-success'><Link to='/blog'>Blog</Link></li>
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/blog'>Blog</Link></li>
         {user?.uid ?
             <>
-                <li className='text-success'><Link to='/dashboard'>Dashboard</Link></li>
-                <li className='text-success'><button onClick={handleLogOut}>Logout</button></li>
+                <li><Link to='/dashboard'>Dashboard</Link></li>
+                <li><button onClick={handleLogOut}>Logout</button></li>
             </>
             :
             <li className='text-success'><Link to='/login'>Login</Link></li>}
     </>
 
     return (
-        <div className='bg-slate-700 '>
+        <div className='bg-gray-200'>
             <div className="navbar flex justify-between container m-auto">
                 <div className="navbar-start">
                     <div className="dropdown">

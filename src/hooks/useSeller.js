@@ -6,7 +6,7 @@ const useSeller = (user) => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/users/seller/${user?.email}`)
+            fetch(`https://reseller-cube-server.vercel.app/users/seller/${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setIsSellerLoading(false);

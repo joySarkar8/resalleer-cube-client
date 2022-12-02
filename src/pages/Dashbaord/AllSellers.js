@@ -7,7 +7,7 @@ const AllSellers = () => {
 
     const { data: sellers = [], isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
-        queryFn: () => fetch(`http://localhost:5000/allseller`)
+        queryFn: () => fetch(`https://reseller-cube-server.vercel.app/allseller`)
             .then(res => res.json())
     });
 
@@ -22,7 +22,7 @@ const AllSellers = () => {
             verify: true
         };
 
-        fetch(`http://localhost:5000/update-seller/${id}`, {
+        fetch(`https://reseller-cube-server.vercel.app/update-seller/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -45,7 +45,7 @@ const AllSellers = () => {
         // console.log(id);
         const proceed = window.confirm('Continue to DELETE this seller pls click ok')
         if (proceed) {
-            fetch(`http://localhost:5000/seller/${id}`, {
+            fetch(`https://reseller-cube-server.vercel.app/seller/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())

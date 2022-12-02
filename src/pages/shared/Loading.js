@@ -2,10 +2,9 @@ import React from 'react';
 
 const Loading = () => {
     return (
-        <div className="flex justify-center items-center">
-            <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </div>
+        <div className=''>
+            <div style={{ borderTopColor: "transparent" }}
+                className="w-10 h-10 border-4 border-blue-400 border-dashed rounded-full animate-spin"></div>
         </div>
     );
 };

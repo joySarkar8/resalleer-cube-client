@@ -6,7 +6,7 @@ const useAdmin = (user) => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/users/admin/${user?.email}`)
+            fetch(`https://reseller-cube-server.vercel.app/users/admin/${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setIsAdminLoading(false);

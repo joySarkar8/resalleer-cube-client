@@ -69,7 +69,7 @@ const Login = () => {
             role: selection,
         };
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://reseller-cube-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
