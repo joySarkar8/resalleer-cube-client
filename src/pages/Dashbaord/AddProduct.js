@@ -34,7 +34,8 @@ const AddProduct = () => {
             meeting_location,
             phone,
             category,
-            condition
+            condition,
+            email: user.email
         };
         console.log(product);
 

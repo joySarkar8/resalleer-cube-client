@@ -35,10 +35,13 @@ const Products = () => {
                     setProductInformation={setProductInformation}
                 ></ProductCard>)
             }
-            <PrivateRoute><Modal
-                productInformation={productInformation}
-                refetch={refetch}
-            ></Modal></PrivateRoute>
+          
+            <PrivateRoute>
+                <Modal
+                    productInformation={productInformation}
+                    refetch={refetch}
+                ></Modal>
+            </PrivateRoute>
         </div>
     );
 };

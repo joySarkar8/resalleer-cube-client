@@ -18,7 +18,7 @@ const Modal = ({productInformation, refetch}) => {
             advertise: 'advertise'
         };
 
-        fetch(`http://localhost:5000/advertise/${id}`, {
+        fetch(`http://localhost:5000/update-product/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -31,8 +31,8 @@ const Modal = ({productInformation, refetch}) => {
                     const booked = {
                         model,
                         resalePrice,
-                        email,
-                        displayName,
+                        buyer_email: email,
+                        buyer_name: displayName,
                         img,
                         meeting_location,
                         sellerName,

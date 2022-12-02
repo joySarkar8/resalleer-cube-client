@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProductCard = ({ product, setProductInformation }) => {
-    const { img, model, resalePrice, originalPrice, yearsOfUse, cardPostTime, isVerified, sellerName, brandName, location, description } = product;
+    const { img, model, resalePrice, originalPrice, yearsOfUse, cardPostTime, verify, sellerName, brandName, location, description } = product;
     return (
         <div className="grid grid-cols-4 mb-5">
             <div><img className='w-full h-56' src={img} alt="" /></div>
@@ -11,7 +11,7 @@ const ProductCard = ({ product, setProductInformation }) => {
                 <p>Price: {resalePrice}/-</p>
                 <p>Original Price: {originalPrice}/-</p>
                 <p>Years of Use: {yearsOfUse}years</p>
-                <p>Seller Name: {sellerName}</p>
+                <p>Seller Name: {sellerName} {verify && <input type="checkbox" checked className="checkbox checkbox-primary" /> }</p>
                 <p>{description}</p>
                 <p>Post Time: {cardPostTime}</p>
             </div>

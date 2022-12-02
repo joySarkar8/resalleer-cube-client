@@ -5,13 +5,14 @@ import Banner from './Banner';
 import CategoryItems from './Category/CategoryItems';
 
 const Home = () => {
-    return (
-        <div className=''>
-          <Banner></Banner>
-          <CategoryItems></CategoryItems>
-          <PrivateRoute><Advertise></Advertise></PrivateRoute>
-        </div>
-    );
+  return (
+    <div className=''>
+      <Banner></Banner>
+      <CategoryItems></CategoryItems>
+      {/* <PrivateRoute><Advertise></Advertise></PrivateRoute> */}
+      <Advertise></Advertise>
+    </div>
+  );
 };
 
 export default Home;

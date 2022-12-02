@@ -3,11 +3,10 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import Loading from '../shared/Loading';
 
-const AllSellers = () => {
-
-    const { data: sellers = [], isLoading, refetch } = useQuery({
+const AllBuyers = () => {
+    const { data: buyers = [], isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
-        queryFn: () => fetch(`http://localhost:5000/allseller`)
+        queryFn: () => fetch(`http://localhost:5000/allbuyer`)
             .then(res => res.json())
     });
 
@@ -17,22 +16,22 @@ const AllSellers = () => {
 
     // console.log(sellers);
 
-    const handleVerify = id => {
-        const sellerVerify = {
-            verify: true
+    const handleMakeSeller = id => {
+        const makeSeller = {
+            role: 'seller'
         };
 
-        fetch(`http://localhost:5000/update-seller/${id}`, {
-            method: 'PUT',
+        fetch(`http://localhost:5000/make-seller/${id}`, {
+            method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(sellerVerify)
+            body: JSON.stringify(makeSeller)
         })
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    toast.success('Verify Successfull');
+                    toast.success('Successfully Updated');
                     refetch();
                 }
                 else {
@@ -43,9 +42,9 @@ const AllSellers = () => {
 
     const handleDelete = id => {
         // console.log(id);
-        const proceed = window.confirm('Continue to DELETE this seller pls click ok')
+        const proceed = window.confirm('Continue to DELETE this user pls click ok')
         if (proceed) {
-            fetch(`http://localhost:5000/seller/${id}`, {
+            fetch(`http://localhost:5000/buyer/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -69,14 +68,14 @@ const AllSellers = () => {
                             <th>No.</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Verify</th>
+                            <th>Make Seller</th>
                             <th></th>
                         </tr>
                     </thead>
 
                     <tbody>
                         {
-                            sellers?.data.map((seller, i) =>
+                            buyers?.data.map((buyer, i) =>
                                 <tr
                                     key={i}
 
@@ -85,17 +84,15 @@ const AllSellers = () => {
                                     <td>
                                         <div className="flex items-center space-x-3">
                                             <div>
-                                                <div className="font-bold">{seller?.name}</div>
+                                                <div className="font-bold">{buyer?.name}</div>
                                                 {/* <div className="text-sm opacity-50">United States</div> */}
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{seller?.email}</td>
-                                    <td>{seller?.verify ? <button className="btn btn-warning btn-xs">Verified</button> :
-                                        <button onClick={() => handleVerify(seller.email)} className="btn btn-primary btn-xs">Verif</button>
-                                    }
+                                    <td>{buyer?.email}</td>
+                                    <td>{<button onClick={() => handleMakeSeller(buyer._id)} className="btn btn-primary btn-xs">Make Seller</button>}
                                     </td>
-                                    <td><button onClick={() => handleDelete(seller._id)} className="btn btn-secondary text-white btn-xs">Delete</button></td>
+                                    <td><button onClick={() => handleDelete(buyer._id)} className="btn btn-secondary text-white btn-xs">Delete</button></td>
 
                                 </tr>
                             )
@@ -109,8 +106,4 @@ const AllSellers = () => {
     );
 };
 
-export default AllSellers;
-
-
-
-
+export default AllBuyers;

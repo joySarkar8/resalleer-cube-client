@@ -43,14 +43,14 @@ const MyOrders = () => {
                                         </div>
                                         <div>
                                             <div className="font-bold">{order?.model}</div>
-                                            <div className="text-sm opacity-50">{order?.meeting_location}</div>
+                                            <div className="text-sm opacity-50">Meeting Location: {order?.meeting_location}</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
                                     {order.resalePrice} /-
                                     <br />
-                                    <span className="badge badge-ghost badge-sm">Mob: {order?.phone}</span>
+                                    <span className="badge badge-ghost badge-sm">Seller Mob: {order?.phone}</span>
                                 </td>
                                 <td>{order?.sellerName}</td>
                             </tr>)

@@ -7,9 +7,10 @@ import { AuthContext } from '../contexts/AuthProvider';
 const Register = () => {
     const { googleProviderLogin, createUser, updateUserProfile } = useContext(AuthContext);
     const [loader, setLoader] = useState(false);
-
+    
     const navigate = useNavigate();
 
+    
     const googleProvider = new GoogleAuthProvider();
 
     const handleGoogleSignIn = () => {
@@ -19,9 +20,9 @@ const Register = () => {
             .then((result) => {
                 const name = result.user.displayName;
                 const email = result.user.email;
-                navigate('/');
                 setUserToDb(name, email, selection);
                 toast.success('Google Login Successfull!')
+                navigate('/')
             })
             .catch(e => {
                 toast.error(e.message);
@@ -46,7 +47,7 @@ const Register = () => {
             .then(() => {
                 form.reset();
                 handleUpdateProfile(name, email, selection);
-                navigate('/')
+
                 toast.success('Create Account Successfull!')
             })
             .catch(e => {
@@ -82,10 +83,11 @@ const Register = () => {
             .then(res => res.json())
             .then(data => {
                 // console.log('save user', data);
-
+                navigate('/')
             })
     };
-    
+
+
     return (
         <div className="hero bg-base-200">
             <div className="card flex-shrink-0 shadow-2xl bg-base-100 w-[500px]">

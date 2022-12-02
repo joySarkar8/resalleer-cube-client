@@ -1,66 +1,7 @@
-import toast from 'react-hot-toast';
+import React from 'react';
 
-
-const AdvertiseCard = ({ advertiseItem, user, refetch }) => {
-    
-    const {displayName} = user;
-
-    
-    
-
-    const { model, img, condition, resalePrice, _id, email, meeting_location, sellerName, phone } = advertiseItem;
-    // console.log(model);
-
-    const handleBook = id => {
-        const add = {
-            status: 'sold'
-        };
-
-
-        fetch(`http://localhost:5000/advertise/${id}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(add)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    const booked = {
-                        model,
-                        resalePrice,
-                        email,
-                        displayName,
-                        img,
-                        meeting_location,
-                        sellerName,
-                        phone
-                    };
-
-                    fetch('http://localhost:5000/booked', {
-                        method: 'POST',
-                        headers: {
-                            'content-type': 'application/json'
-                        },
-                        body: JSON.stringify(booked)
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data.success) {
-                                toast.success('Booking Confirmed');
-                                refetch();
-                            }
-                            else {
-                                toast.error(data.message)
-                            }
-                        })
-                }
-                else {
-                    toast.error(data.message)
-                }
-            })
-    }
+const AdvertiseCard = ({ advertiseItem }) => {
+    const { model, img, condition, resalePrice, _id, meeting_location, sellerName, phone } = advertiseItem;
 
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
@@ -77,7 +18,7 @@ const AdvertiseCard = ({ advertiseItem, user, refetch }) => {
                     <div className="badge badge-outline">Products</div>
                 </div>
             </div>
-            <button onClick={() => handleBook(_id)} className='btn btn-primary'>Buy</button>
+            
             {/* <Link to={`/products/${categoryName}`}><button className="btn btn-primary">View Products</button></Link> */}
         </div>
     );

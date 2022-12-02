@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider';
 import Loading from '../shared/Loading';
@@ -8,13 +8,6 @@ const MyProducts = () => {
     // const [products, setProducts] = useState([]);
     const { user } = useContext(AuthContext);
     const { email } = user;
-
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/myproduct?email=${email}`)
-    //         .then(res => res.json())
-    //         .then(data => setProducts(data.data))
-    // }, [email])
-
 
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products'],
@@ -33,7 +26,7 @@ const MyProducts = () => {
         }
 
 
-        fetch(`http://localhost:5000/advertise/${id}`, {
+        fetch(`http://localhost:5000/update-product/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -58,7 +51,7 @@ const MyProducts = () => {
 
     return (
         <div>
-            <h2>My products</h2>
+            <h2 className='text-3xl text-center mt-4 mb-4'>My products</h2>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead>
@@ -70,7 +63,7 @@ const MyProducts = () => {
                             <th>Addvertise</th>
                             <th>Status</th>
                             <th></th>
-                            
+
                         </tr>
                     </thead>
 
@@ -103,7 +96,7 @@ const MyProducts = () => {
                                     <td>{product.resalePrice} /-</td>
                                     <td>{product?.advertise ? <button disabled className="btn btn-primary btn-xs">Addvertise</button> :
                                         <button onClick={() => handleAdvertise(product._id)} className="btn btn-primary btn-xs">Addvertise</button>
-                                        }
+                                    }
                                     </td>
                                     <td>{product?.status ? 'sold' : <span className='badge badge-primary'>Live</span>}</td>
                                     <td><button onClick={() => handleDelete(product._id)} className="btn btn-primary btn-xs">Delete</button></td>

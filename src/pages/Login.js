@@ -8,12 +8,15 @@ const Login = () => {
     const { googleProviderLogin, login } = useContext(AuthContext);
     const [loader, setLoader] = useState(false);
 
+    
     const navigate = useNavigate();
     const location = useLocation();
 
     const from = location.state?.from?.pathname || '/';
 
     const googleProvider = new GoogleAuthProvider();
+
+    
 
     const handleGoogleSignIn = () => {
         const selection = 'buyer';
@@ -23,10 +26,10 @@ const Login = () => {
                 const user = result.user;
                 const name = user.displayName;
                 const email = user.email;
-                user && navigate(from, { replace: true });
+                console.log(email);
                 setUserToDb(name, email, selection);
+                user && navigate(from, { replace: true });
                 toast.success('Google Login Successfull!')
-                // console.log(user);
             })
             .catch(e => {
                 toast.error(e.message);
@@ -35,6 +38,9 @@ const Login = () => {
 
     };
 
+    
+
+    
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -48,7 +54,6 @@ const Login = () => {
             .then(result => {
                 form.reset();
                 toast.success('Login Successfull!')
-                navigate('/')
             })
             .catch(e => {
                 toast.error(e.message);
@@ -57,7 +62,6 @@ const Login = () => {
     };
 
     const setUserToDb = (name, email, selection) => {
-
         const user = {
             name,
             email,

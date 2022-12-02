@@ -23,7 +23,7 @@ const SellerRoute = ({ children }) => {
     // }, [user?.email])
 
 
-    console.log(isSeller);
+    // console.log(isSeller);
 
 
     if (loader || isSellerLoading) {

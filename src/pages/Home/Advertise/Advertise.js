@@ -1,21 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../contexts/AuthProvider';
+import React from 'react';
 import Loading from '../../shared/Loading';
 import AdvertiseCard from './AdvertiseCard';
 
 const Advertise = () => {
-    const { user } = useContext(AuthContext);
-    // const [advertiseData, setAdvertiseData] = useState([]);
-
-    // useEffect(() => {
-    //     fetch('http://localhost:5000/advertise?advertise=advertise')
-    //         .then(res => res.json())
-    //         .then(data => setAdvertiseData(data.data))
-    // }, []);
-
-
-    const { data: advertiseData = [], isLoading, refetch } = useQuery({
+    const { data: advertiseData = [], isLoading } = useQuery({
         queryKey: ['advertise'],
         queryFn: () => fetch('http://localhost:5000/advertise?advertise=advertise')
             .then(res => res.json())
@@ -24,8 +13,6 @@ const Advertise = () => {
     if (isLoading) {
         return <Loading></Loading>
     };
-
-    // console.log(advertiseData.data);
 
     return (
         <div>
@@ -37,8 +24,6 @@ const Advertise = () => {
                             advertiseData?.data?.map(advertiseItem => <AdvertiseCard
                                 key={advertiseItem._id}
                                 advertiseItem={advertiseItem}
-                                user={user}
-                                refetch={refetch}
                             ></AdvertiseCard>)
                         }
                     </div>
