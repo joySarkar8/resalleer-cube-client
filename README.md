@@ -1,4 +1,4 @@
-# Welcome to Service Review website
+# Welcome to Resale website
 
 This project was build with tailwindcss, react, mongodb, nodejs, express. This website has dynamic route system for adding product for seller route only..
 
