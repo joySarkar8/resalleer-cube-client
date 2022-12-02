@@ -45,7 +45,7 @@ const Header = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
-                        <li>{user?.displayName}</li>
+                        {/* <li>{user?.displayName}</li> */}
                         {menuItems}
                     </ul>
                 </div>

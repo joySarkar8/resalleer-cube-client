@@ -85,7 +85,7 @@ const Login = () => {
 
     return (
         <div className="hero bg-base-200">
-            <div className="card flex-shrink-0 shadow-2xl bg-base-100 w-[500px]">
+            <div className="card mt-16 mb-20 flex-shrink-0 shadow-2xl bg-base-100 w-[500px]">
                 <form onSubmit={handleSubmit} className="card-body pb-3">
                     <div className="form-control">
                         <label className="label">
@@ -108,7 +108,7 @@ const Login = () => {
                 </form>
 
                 <div className='pl-8 pr-8'><button onClick={handleGoogleSignIn} className="btn btn-secondary w-full">Login with Google</button></div>
-                <p className='text-white mt-3 mb-8 ml-8'>New User Please <Link className='underline text-red-400' to='/register'>Register</Link> here.</p>
+                <p className='mt-3 mb-8 ml-8'>New User Please <Link className='underline text-red-400' to='/register'>Register</Link> here.</p>
 
             </div>
         </div>
