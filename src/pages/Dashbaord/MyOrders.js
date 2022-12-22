@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider';
 
+
 const MyOrders = () => {
     const [orders, setOrders] = useState([]);
     const { user } = useContext(AuthContext);
@@ -15,7 +16,7 @@ const MyOrders = () => {
     return (
 
 
-        <div className="overflow-x-auto w-full">
+        <div className="overflow-x-auto w-full min-h-[calc(100vh-320px)]">
             <table className="table w-full">
 
                 <thead>

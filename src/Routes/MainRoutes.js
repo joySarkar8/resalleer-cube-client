@@ -74,8 +74,8 @@ const router = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>,
-                loader: ({params}) => fetch(`https://reseller-cube-server.vercel.app/blog`)
-            }
+                // loader: () => fetch(`https://reseller-cube-server.vercel.app/blog`)
+            },
         ]
     }
 ]);

@@ -60,7 +60,7 @@ const AllSellers = () => {
     };
 
     return (
-        <div>
+        <div className='min-h-[calc(100vh-320px)]'>
             {/*  <h2 className='text-3xl text-center mb-4 mt-4'>All sellers</h2> */}
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
